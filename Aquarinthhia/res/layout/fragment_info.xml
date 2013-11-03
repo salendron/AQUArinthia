@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5sp" >
+            
+            <ImageView
+			   android:contentDescription="@string/app_name"
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:src="@drawable/aquarinthia" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Kärnten ist voller Wasser, egal ob es vom Himmel fällt oder die Seen füllt und AQUArinthia ist deine App dazu."
+               android:textSize="14sp"
+     		   android:textStyle="bold"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Diese App zeigt euch aktuelle Pegelstände und Wassertemperaturen der Seen, sowie aktuelle Niederschlagswerte und Lufttemperaturen aus ganz Kärnten. Über das Symbol mit der Fahne in der oberen Leiste gelangt ihr zu einer Karte auf der euch alle Daten direkt an den Messstationen angezeigt werden."
+               android:textSize="14sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="\nAutor: Bruno Hautzenberger"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textStyle="bold"
+               android:textColor="@color/blue" />
+            
+            <TextView android:id="@+id/tvAuthorLinks"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="http://the-engine.at\nhttp://google.com/+BrunoHautzenberger"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="\nDatenquelle: Land Kärnten – data.ktn.gv.at"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textStyle="bold"
+               android:textColor="@color/blue" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Alle Daten dieser App stammen aus dem Open Government Data (OGD) Portal des Landes Kärnten und stehen unter der Creative Commons Namensnennung 3.0 Österreich Lizenz."
+               android:textSize="14sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView android:id="@+id/tvOGDLinks"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="OGD Portal Kärnten: http://data.ktn.gv.at\nLizenz: http://creativecommons.org/licenses/by/3.0/at/deed.de"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
