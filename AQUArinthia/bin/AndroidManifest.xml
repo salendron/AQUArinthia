@@ -39,15 +39,10 @@
             </intent-filter>
         </activity>
 
-        <!-- XPS13  
+         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDmzDig8PYQiyQLcfaddE6X_o7Qv0I0v2E" />  --> 
-        
-        <!-- LIFE -->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD27rvmKwgj_3SyFdGPjAIXg1lik4eFRfw" />
+            android:value="MAPS-API-KEY" />  
         
         <activity
             android:name="at.theengine.android.aquarinthhia.MapActivity"

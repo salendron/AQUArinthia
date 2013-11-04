@@ -147,6 +147,12 @@ public class MainActivity extends FragmentActivity {
 		return mDataLoader;
 	}
 	
+	@Override
+	public void onBackPressed()
+	{
+		this.finish();
+	}
+	
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
