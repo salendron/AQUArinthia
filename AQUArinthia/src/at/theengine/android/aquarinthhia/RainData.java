@@ -7,7 +7,8 @@ public class RainData {
 	private String mTime;
 	private String mRain;
 	private float mLat;
-    private float mLng;
+	private float mLng;
+	private String mImage;
 	
 	public String getLocationName() {
 		return mLocationName;
@@ -49,5 +50,10 @@ public class RainData {
     public void setLng(float lng) {
         this.mLng = lng;
     }
-	
+	public String getImage() {
+		return mImage;
+	}
+	public void setImage(String image) {
+		this.mImage = image;
+	}
 }

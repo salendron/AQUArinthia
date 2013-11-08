@@ -57,12 +57,14 @@ public class MainActivity extends FragmentActivity {
 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		
+	}
+	
+	@Override
+	protected void onResume() {
 		mContext = this;
-		
 		setUpActionBar();
-		
 		refreshData();
+		super.onResume();
 	}
 
 	@Override

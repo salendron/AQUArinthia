@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.util.Log;
@@ -123,6 +125,21 @@ public class DataLoader {
 		        rainData.setTemp(temp);
 		        rainData.setTime(time);
 		        
+		        //get image
+		        String p = "src=\"[a-z A-Z / : \\. \\- \\_ 0-9]*[jpg png gif]\"";
+				Pattern pattern = Pattern.compile(p);
+				
+				String data = items.get(i).getDescription();
+				Matcher matcher = pattern.matcher(data);
+				
+				String path = null;
+				if( matcher.find()) {
+					path = matcher.group();
+					path = path.replace("\"", "").replace("src=", "");
+				}
+				
+				rainData.setImage(path);
+		        
 		        rainDataSet.add(rainData);
 			} catch(Exception ex){
 				Log.e(TAG, "Raindata could not be parsed: " + ex.getMessage());
@@ -171,6 +188,21 @@ public class DataLoader {
 		        lakeData.setHeight(height);
 		        lakeData.setTemp(temp);
 		        lakeData.setTime(time);
+		        
+		        //get image
+		        String p = "src=\"[a-z A-Z / : \\. \\- \\_ 0-9]*[jpg png gif]\"";
+				Pattern pattern = Pattern.compile(p);
+				
+				String data = items.get(i).getDescription();
+				Matcher matcher = pattern.matcher(data);
+				
+				String path = null;
+				if( matcher.find()) {
+					path = matcher.group();
+					path = path.replace("\"", "").replace("src=", "");
+				}
+				
+				lakeData.setImage(path);
 		        
 		        lakeDataSet.add(lakeData);
 			} catch(Exception ex){

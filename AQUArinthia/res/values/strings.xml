@@ -3,7 +3,7 @@
 
     <string name="app_name">Aquarinthia</string>
     <string name="action_refresh">Aktualisieren</string>
-    <string name="action_map">KArte</string>
+    <string name="action_map">Karte</string>
     <string name="title_section1">Niederschlag</string>
     <string name="title_section2">Seen</string>
     <string name="title_section3">Info</string>
@@ -16,5 +16,8 @@
     <color name="lightgray">#dddddd</color>
 
     <string name="title_activity_map">MapActivity</string>
+    <string name="label_last_update">Uhrzeit der Messung: </string>
+    <string name="label_close_graph">Diagramm ausblenden</string>
+    <string name="label_raw_data">Rohdaten von data.ktn.gv.at</string>
 
 </resources>

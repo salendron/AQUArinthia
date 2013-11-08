@@ -8,6 +8,7 @@ public class LakeData {
 	private String mTime;
 	private float mLat;
     private float mLng;
+    private String mImage;
 	
 	public String getLakeName() {
 		return mLakeName;
@@ -49,5 +50,10 @@ public class LakeData {
     public void setLng(float lng) {
         this.mLng = lng;
     }
-
+    public String getImage() {
+		return mImage;
+	}
+	public void setImage(String image) {
+		this.mImage = image;
+	}
 }

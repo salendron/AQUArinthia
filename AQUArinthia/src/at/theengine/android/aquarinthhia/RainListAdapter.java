@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import at.theengine.android.simple_rss2_android.RSSItem;
 
@@ -59,6 +62,34 @@ public class RainListAdapter extends ArrayAdapter<RainData> {
                 R.id.tvTime
         );
         tvTime.setText(items.get(position).getTime());
+        
+        //set diagram
+        final WebView webView = (WebView) v.findViewById(R.id.wvDiagramm);
+        String content = "<html><head><title>news</title></head><body><img src='" + items.get(position).getImage() + "' width='100%'></body></html>";
+		webView.loadDataWithBaseURL(null,content,"text/html","UTF-8",null);
+		
+		final Button btnCloseDetail = (Button) v.findViewById(R.id.btnCloseDetail);
+		btnCloseDetail.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				btnCloseDetail.setVisibility(View.GONE);
+				webView.setVisibility(View.GONE);
+			}
+		});
+		
+		LinearLayout llItem = (LinearLayout)  v.findViewById(R.id.llItem);
+		llItem.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				btnCloseDetail.setVisibility(View.VISIBLE);
+				webView.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		btnCloseDetail.setVisibility(View.GONE);
+		webView.setVisibility(View.GONE);
 
         return v;
     }

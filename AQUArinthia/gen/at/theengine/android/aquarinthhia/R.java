@@ -198,9 +198,11 @@ containing a value of this type.
         public static final int marker_rain_no=0x7f020023;
     }
     public static final class id {
-        public static final int action_karte=0x7f050014;
-        public static final int action_refresh=0x7f050013;
+        public static final int action_karte=0x7f050017;
+        public static final int action_refresh=0x7f050016;
+        public static final int btnCloseDetail=0x7f050012;
         public static final int hybrid=0x7f050004;
+        public static final int llItem=0x7f05000d;
         public static final int map=0x7f050008;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -212,13 +214,14 @@ containing a value of this type.
         public static final int section_label=0x7f05000c;
         public static final int terrain=0x7f050003;
         public static final int tvAuthorLinks=0x7f05000a;
-        public static final int tvHeight=0x7f05000f;
-        public static final int tvLake=0x7f05000d;
-        public static final int tvLocation=0x7f050011;
+        public static final int tvHeight=0x7f05000e;
+        public static final int tvLake=0x7f050010;
+        public static final int tvLocation=0x7f050015;
         public static final int tvOGDLinks=0x7f05000b;
-        public static final int tvRain=0x7f050012;
-        public static final int tvTemp=0x7f05000e;
-        public static final int tvTime=0x7f050010;
+        public static final int tvRain=0x7f050014;
+        public static final int tvTemp=0x7f05000f;
+        public static final int tvTime=0x7f050011;
+        public static final int wvDiagramm=0x7f050013;
     }
     public static final class layout {
         public static final int ab_view_main=0x7f030000;
@@ -330,6 +333,9 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int contentdesc_icon_rain=0x7f06001f;
+        public static final int label_close_graph=0x7f060022;
+        public static final int label_last_update=0x7f060021;
+        public static final int label_raw_data=0x7f060023;
         public static final int title_activity_map=0x7f060020;
         public static final int title_section1=0x7f06001c;
         public static final int title_section2=0x7f06001d;
