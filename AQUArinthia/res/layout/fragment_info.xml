@@ -41,6 +41,40 @@
             <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:text="\nNiederschlagswerte"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textStyle="bold"
+               android:textColor="@color/blue" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Der Niederschlag wird pro Messstation als Niederschlagssumme in Millimetern angegeben. Durch Berühren einer Messstation in der Liste öffnet sich ein Diagramm zum Niederschlagsverlauf. Alle dargestellten Daten sind Rohdaten."
+               android:textSize="14sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="\nPegelstände der Seen"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textStyle="bold"
+               android:textColor="@color/blue" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Die Pegelstände der Seen werden in Zentimeter über Pegelnullpunkt des jeweiligen Sees angegeben. Der Pegelnullpunkt ist von See zu See verschieden. Durch Berühren einer Messstation in der Liste öffnet sich ein Diagramm zum Verlauf des Pegelstandes. Auf diesem Diagramm ist auch der jeweilige Pegelnullpunkt in Meter über Adria angegeben. Alle dargestellten Daten sind Rohdaten."
+               android:textSize="14sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
                android:text="\nAutor: Bruno Hautzenberger"
                android:textSize="12sp"
                android:fontFamily="sans"

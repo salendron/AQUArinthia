@@ -88,6 +88,15 @@ public class LakeListAdapter extends ArrayAdapter<LakeData> {
 			}
 		});
 		
+		webView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webView.getUrl()));
+				ctx.startActivity(browserIntent);
+			}
+		});
+		
 		btnCloseDetail.setVisibility(View.GONE);
 		webView.setVisibility(View.GONE);
 
