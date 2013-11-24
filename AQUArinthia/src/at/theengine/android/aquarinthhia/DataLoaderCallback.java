@@ -8,6 +8,8 @@ public abstract class DataLoaderCallback {
 	
 	public abstract void onLakeDataLoaded( ArrayList<LakeData> items);
 	
+	public abstract void onRiverDataLoaded( ArrayList<RiverData> items);
+	
 	public abstract void onDataLoadingError(Exception ex);
 	
 }

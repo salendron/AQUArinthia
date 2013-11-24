@@ -21,6 +21,7 @@ public class DataLoader {
 	
 	private ArrayList<RainData> mRainItems;
 	private ArrayList<LakeData> mLakeData;
+	private ArrayList<RiverData> mRiverData;
 	
 	private Context mContext;
 	private DataLoaderCallback mCallback;
@@ -32,6 +33,8 @@ public class DataLoader {
 	
 	public void clearCache(){
 		mRainItems = null;
+		mLakeData = null;
+		mRiverData = null;
 	}
 			
 	public ArrayList<RainData> getRainItems(){
@@ -40,6 +43,10 @@ public class DataLoader {
 	
 	public ArrayList<LakeData> getLakeItems(){
 		return mLakeData;
+	}
+	
+	public ArrayList<RiverData> getRiverItems(){
+		return mRiverData;
 	}
 	
 	public void loadData(){
@@ -73,6 +80,28 @@ public class DataLoader {
 					public void onFeedParsed(List<RSSItem> items) {
 						mLakeData = parseLakeData(items);
 						mCallback.onLakeDataLoaded(mLakeData);
+					}
+					
+					@Override
+					public void onError(Exception ex) {
+						mCallback.onDataLoadingError(ex);
+						Log.e(TAG,ex.getMessage());
+					}
+				}
+			);
+			parser.parseAsync();
+		} else {
+			mCallback.onLakeDataLoaded(mLakeData);
+		}
+		
+		if(mRiverData == null) {
+			SimpleRss2Parser parser = new SimpleRss2Parser("https://info.ktn.gv.at/asp/hydro/hydro_stationen_abfluss_rss_mit_Werte.asp", 
+			    new SimpleRss2ParserCallback() {
+					
+					@Override
+					public void onFeedParsed(List<RSSItem> items) {
+						mRiverData = parseRiverData(items);
+						mCallback.onRiverDataLoaded(mRiverData);
 					}
 					
 					@Override
@@ -216,6 +245,70 @@ public class DataLoader {
 		return lakeDataSet;
 	}
 	
+	private ArrayList<RiverData> parseRiverData(List<RSSItem> items){
+		ArrayList<RiverData> riverDataSet = new ArrayList<RiverData>();
+		
+		for(int i = 0; i < items.size(); i++){
+			try {
+				RiverData riverData = new RiverData();
+				riverData.setRiverName(items.get(i).getTitle().replace("ZAMG", "").trim());
+				riverData.setLat(items.get(i).getLat());
+				riverData.setLng(items.get(i).getLng());
+				
+				String height = "";
+		        String mass = "";
+		        String time = "";
+		        
+		        String[] desc = items.get(i).getDescription().replace("<p>", "").replace("\n", "").split("<br>");
+		        
+		        for(int j = 0; j < desc.length; j++){	        	
+		        	if(desc[j].trim().startsWith("Datum")){
+		        		time = desc[j].split(":")[1].trim();
+		        		
+		        		//concate rest of date
+		        		for(int k = 2; k < desc[j].split(":").length - 1; k++){
+		        			time += ":" + desc[j].split(":")[k];
+		        		}
+		        		time = time.split(" ")[1] + " Uhr";
+		        		
+		        	} else if(desc[j].startsWith("Wasserstand")){
+		        		height = desc[j].split(":")[1].trim() + "cm";
+		        	} else if(desc[j].startsWith("Abfluss")){
+		        		mass = desc[j].split(":")[1].trim() + "m³";
+		        	}
+		        }
+				
+		        riverData.setHeight(height);
+		        riverData.setMass(mass);
+		        riverData.setTime(time);
+		        
+		        //get image
+		        String p = "src=\"[a-z A-Z / : \\. \\- \\_ 0-9]*[jpg png gif]\"";
+				Pattern pattern = Pattern.compile(p);
+				
+				String data = items.get(i).getDescription();
+				Matcher matcher = pattern.matcher(data);
+				
+				String path = null;
+				if( matcher.find()) {
+					path = matcher.group();
+					path = path.replace("\"", "").replace("src=", "");
+				}
+				
+				riverData.setImage(path);
+		        
+		        riverDataSet.add(riverData);
+			} catch(Exception ex){
+				Log.e(TAG, "Lakedata could not be parsed: " + ex.getMessage());
+			}
+		}
+		
+		//sort by Location Name
+        Collections.sort(riverDataSet, new RiverDataComperator());
+        
+		return riverDataSet;
+	}
+	
 	public class RainDataComperator implements Comparator<RainData> {
 	    @Override
 	    public int compare(RainData o1, RainData o2) {
@@ -227,6 +320,13 @@ public class DataLoader {
 	    @Override
 	    public int compare(LakeData o1, LakeData o2) {
 	        return o1.getLakeName().compareTo(o2.getLakeName());
+	    }
+	}
+	
+	public class RiverDataComperator implements Comparator<RiverData> {
+	    @Override
+	    public int compare(RiverData o1, RiverData o2) {
+	        return o1.getRiverName().compareTo(o2.getRiverName());
 	    }
 	}
 

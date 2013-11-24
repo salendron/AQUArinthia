@@ -6,7 +6,8 @@
     <string name="action_map">Karte</string>
     <string name="title_section1">Niederschlag</string>
     <string name="title_section2">Seen</string>
-    <string name="title_section3">Info</string>
+    <string name="title_section3">Flüsse</string>
+    <string name="title_section4">Info</string>
     <string name="contentdesc_icon_rain">Icon Niederschlag</string>
 
     <color name="blue">#0099CC</color>

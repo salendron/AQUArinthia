@@ -75,6 +75,23 @@
             <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:text="\nDaten der Flüsse"
+               android:textSize="12sp"
+               android:fontFamily="sans"
+               android:textStyle="bold"
+               android:textColor="@color/blue" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Die Pegelstände der Flüsse werden in Zentimeter über Pegelnullpunkt des jeweiligen Flusses angegeben. Der Pegelnullpunkt ist von Fluss zu Fluss verschieden. Durch Berühren einer Messstation in der Liste öffnet sich ein Diagramm zum Verlauf der Abflussmenge. Auf diesem Diagramm ist auch der jeweilige Pegelnullpunkt in Meter über Adria angegeben. Alle dargestellten Daten sind Rohdaten."
+               android:textSize="14sp"
+               android:fontFamily="sans"
+               android:textColor="@color/gray" />
+            
+            <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
                android:text="\nAutor: Bruno Hautzenberger"
                android:textSize="12sp"
                android:fontFamily="sans"

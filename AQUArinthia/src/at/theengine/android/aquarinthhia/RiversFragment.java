@@ -1,32 +1,26 @@
 package at.theengine.android.aquarinthhia;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
-import at.theengine.android.simple_rss2_android.RSSItem;
-import at.theengine.android.simple_rss2_android.SimpleRss2Parser;
-import at.theengine.android.simple_rss2_android.SimpleRss2ParserCallback;
 
-public class RainfallFragment extends Fragment {
+public class RiversFragment extends Fragment {
 
 	private Context mContext;
 	private ListView mListView; 
 	private MainActivity mActvitiy;
 	
-	public RainfallFragment() {}
+	public RiversFragment() {}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_rainfall, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_rivers, container, false);
 		
 		mContext = getActivity();
 		mListView = (ListView) rootView;
@@ -42,9 +36,9 @@ public class RainfallFragment extends Fragment {
 		DataLoader loader = mActvitiy.getDataLoader();
 		
 		if(loader != null){
-			ArrayList<RainData> rainItems = loader.getRainItems();
-			if(rainItems != null){
-				mListView.setAdapter(new RainListAdapter(mContext, R.layout.listitem_rainfall, rainItems));
+			ArrayList<RiverData> riverItems = loader.getRiverItems();
+			if(riverItems != null){
+				mListView.setAdapter(new RiverListAdapter(mContext, R.layout.listitem_rivers, riverItems));
 			}
 		}
 	}

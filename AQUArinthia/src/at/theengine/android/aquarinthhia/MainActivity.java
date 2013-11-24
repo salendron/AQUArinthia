@@ -41,9 +41,11 @@ public class MainActivity extends FragmentActivity {
 	private ProgressBar mPbLoading;
 	private boolean mIsRainLoaded;
 	private boolean mIsLakesLoaded;
+	private boolean mIsRiversLoaded;
 	
 	private RainfallFragment rainFallFragment;
 	private LakesFragment lakesFragment;
+	private RiversFragment riversFragment;
 	private InfoFragment infoFragment;
 	
 
@@ -111,13 +113,14 @@ public class MainActivity extends FragmentActivity {
 		mPbLoading.setVisibility(View.VISIBLE);
 		mIsLakesLoaded = false;
 		mIsRainLoaded = false;
+		mIsRiversLoaded = false;
 		
 		if(mDataLoader == null){
 			mDataLoader = new DataLoader(mContext, new DataLoaderCallback() {
 				
 				@Override
 				public void onRainDataLoaded(ArrayList<RainData> items) {
-					rainFallFragment.loadData();
+					try { rainFallFragment.loadData(); } catch(Exception ex) {}
 					mIsRainLoaded = true;
 					hideLoading();
 				}
@@ -125,13 +128,19 @@ public class MainActivity extends FragmentActivity {
 				@Override
 				public void onDataLoadingError(Exception ex) {
 					Toast.makeText(mContext, ex.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-					
 				}
 
 				@Override
 				public void onLakeDataLoaded(ArrayList<LakeData> items) {
-					lakesFragment.loadData();
+					try { lakesFragment.loadData(); } catch(Exception ex) {}
 					mIsLakesLoaded = true;
+					hideLoading();
+				}
+
+				@Override
+				public void onRiverDataLoaded(ArrayList<RiverData> items) {
+					try { riversFragment.loadData(); } catch(Exception ex) {}
+					mIsRiversLoaded = true;
 					hideLoading();
 				}
 			});
@@ -142,7 +151,7 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	private void hideLoading(){
-		if(mIsLakesLoaded && mIsRainLoaded){
+		if(mIsLakesLoaded && mIsRainLoaded && mIsRiversLoaded){
 			mPbLoading.setVisibility(View.GONE);
 		}
 	}
@@ -166,20 +175,23 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			if(position == 0){
-				rainFallFragment = new RainfallFragment();
+				if(rainFallFragment == null){ rainFallFragment = new RainfallFragment(); }
 				return rainFallFragment;
 			} else if(position == 1){
-				lakesFragment = new LakesFragment();
+				if(lakesFragment == null){ lakesFragment = new LakesFragment(); }
 				return lakesFragment;
+			} else if(position == 2){
+				if(riversFragment == null){ riversFragment = new RiversFragment(); }
+				return riversFragment;
 			} else {
-				infoFragment = new InfoFragment();
+				if(infoFragment == null){ infoFragment = new InfoFragment(); }
 				return infoFragment;
 			}
 		}
 
 		@Override
 		public int getCount() {
-			return 3;
+			return 4;
 		}
 
 		@Override
@@ -192,6 +204,8 @@ public class MainActivity extends FragmentActivity {
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
+			case 3:
+				return getString(R.string.title_section4).toUpperCase(l);
 			}
 			return null;
 		}

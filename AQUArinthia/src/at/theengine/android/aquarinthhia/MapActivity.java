@@ -28,6 +28,8 @@ public class MapActivity extends FragmentActivity {
 	private ProgressBar mPbLoading;
 	private boolean mIsRainLoaded;
 	private boolean mIsLakesLoaded;
+	private boolean mIsRiversLoaded;
+	
 	private BestLocationListener mBestLocationListener;
 	BestLocationProvider mBestLocationProvider;
 	
@@ -128,6 +130,7 @@ public class MapActivity extends FragmentActivity {
 		mPbLoading.setVisibility(View.VISIBLE);
 		mIsLakesLoaded = false;
 		mIsRainLoaded = false;
+		mIsRiversLoaded = false;
 		
 		if(mDataLoader == null){
 			mDataLoader = new DataLoader(mContext, new DataLoaderCallback() {
@@ -150,6 +153,13 @@ public class MapActivity extends FragmentActivity {
 					drawLakeMarkers(items);
 					hideLoading();
 				}
+
+				@Override
+				public void onRiverDataLoaded(ArrayList<RiverData> items) {
+					mIsRiversLoaded = true;
+					drawRiverMarkers(items);
+					hideLoading();
+				}
 			});
 		}
 		
@@ -158,7 +168,7 @@ public class MapActivity extends FragmentActivity {
 	}
 	
 	private void hideLoading(){
-		if(mIsLakesLoaded && mIsRainLoaded){
+		if(mIsLakesLoaded && mIsRainLoaded && mIsRiversLoaded){
 			mPbLoading.setVisibility(View.GONE);
 		}
 	}
@@ -195,6 +205,20 @@ public class MapActivity extends FragmentActivity {
 	        .title(items.get(i).getLakeName())
 	        .snippet("Pegel: " + items.get(i).getHeight() + " - " + 
 	        			"Wassertemperatur: " + items.get(i).getTemp())
+	        .icon(BitmapDescriptorFactory
+	            .fromResource(icon)));
+		}
+	}
+	
+	private void drawRiverMarkers(ArrayList<RiverData> items){
+		for(int i = 0; i < items.size(); i++){
+			int icon = R.drawable.marker_river;
+			
+			mMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions()
+	        .position(new LatLng(items.get(i).getLat(), items.get(i).getLng()))
+	        .title(items.get(i).getRiverName())
+	        .snippet("Pegel: " + items.get(i).getHeight() + " - " + 
+	        			"Abfluss: " + items.get(i).getMass())
 	        .icon(BitmapDescriptorFactory
 	            .fromResource(icon)));
 		}

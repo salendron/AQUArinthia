@@ -32,6 +32,7 @@ public class LakesFragment extends Fragment {
 	}
 	
 	public void loadData(){
+		if(mActvitiy == null) { mActvitiy = (MainActivity) getActivity(); }
 		DataLoader loader = mActvitiy.getDataLoader();
 		
 		if(loader != null){
